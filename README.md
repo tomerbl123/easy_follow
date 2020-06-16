@@ -12,3 +12,5 @@ Built With:
 * Django - The web framework.
 * Django REST Framework - A REST api toolkit.
 * PostgreSQL - The supported DB.
+
+Please find a PostMan collection in the project's root folder, with a predefined API requests for example.
