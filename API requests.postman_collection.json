@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "c2086794-80fb-46d0-a3be-a02059dd7473",
+		"name": "easy_follow API requests",
+		"description": "Attached are the supported requests for EasyFollow API.\r\n\r\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/posts/create_user/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"posts",
+								"create_user",
+								""
+							]
+						},
+						"description": "Creating a Media User that can post and view messages (not a system user that requires authentication).\r\n\r\nRequired:\r\nusername - The user's name, max_length=15."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "68b86e08-63e8-4030-b61a-9bb2b1944019",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "391f68ac-2e5a-45b7-829f-11150751996f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "messages",
+			"item": [
+				{
+					"name": "PostMessage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": {{content}},\r\n    \"media_user\": {{user_id}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/posts/post_message/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"posts",
+								"post_message",
+								""
+							]
+						},
+						"description": "Create a new message for a user.\r\nMessages are used later on as part of the news feed.\r\n\r\nRequired:\r\ncontent - The content of the message, max_length=255.\r\nmedia_user - The ID of the user that posts the message."
+					},
+					"response": []
+				},
+				{
+					"name": "GetGlobalFeed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/posts/get_global_feed/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"posts",
+								"get_global_feed",
+								""
+							]
+						},
+						"description": "Fetches a Global Feed - all the users' messages, ordered by creation date."
+					},
+					"response": []
+				},
+				{
+					"name": "GetFeed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/posts/get_feed/{{user_id}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"posts",
+								"get_feed",
+								"{{user_id}}"
+							]
+						},
+						"description": "Fetches a Private Feed - all the user's followed users messages, ordered by creation date.\r\n\r\nRequired:\r\nA user_id in the URL."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "follows",
+			"item": [
+				{
+					"name": "Follow",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"following_user\": {{following_user}},\r\n    \"followed_user\": {{followed_user}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/posts/follow/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"posts",
+								"follow",
+								""
+							]
+						},
+						"description": "Creates a new follow.\r\n\r\nRequired:\r\nfollowing_user - the ID of the following user.\r\nfollowed_user - the ID of the followed user."
+					},
+					"response": []
+				},
+				{
+					"name": "UnFollow",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"following_user\": {{following_user}},\r\n    \"followed_user\": {{followed_user}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/posts/unfollow/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"posts",
+								"unfollow",
+								""
+							]
+						},
+						"description": "Removes an existing follow.\r\n\r\nRequired:\r\nfollowing_user - the ID of the following user.\r\nfollowed_user - the ID of the followed user."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
