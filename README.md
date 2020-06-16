@@ -9,6 +9,6 @@ Supported API endpoints:
 6. GetGlobalFeed - GET request.
 
 Built With:
-Django - The web framework.
-Django REST Framework - A REST api toolkit.
-PostgreSQL - The supported DB.
+* Django - The web framework.
+* Django REST Framework - A REST api toolkit.
+* PostgreSQL - The supported DB.
